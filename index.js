@@ -40,9 +40,10 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
-app.use("/backend/users",usersController);
-app.use("/backend/projects",projectsController);
-app.use("/backend/comments",commentsController);
+app.use("/users",usersController);
+app.use("/projects",projectsController);
+app.use("/comments",commentsController);
+app.use("/uploads",express.static("./uploads"))
 
 
 app.use((err,req,res,next)=>{
@@ -59,14 +60,14 @@ app.use((err,req,res,next)=>{
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '/upload')
+    cb(null, './uploads')
   },
   filename: (req, file, cb) => {
     cb(null, Date.now()+file.originalname.replace(/\s+/g, '-').toLowerCase());
   }
 })
 const upload=multer({storage});
-app.post('/backend/upload',upload.single('file'), (req,res)=>{
+app.post('/upload',upload.single('file'), (req,res)=>{
   const file=req.file;
   res.status(200).json(file.filename);
 })
