@@ -33,6 +33,10 @@ const connectdb=async()=>{
 // const corsOptions={
 //   origin:"https://localhost:8800/backend",
 // }
+
+const corsOptions = {
+  origin: "http://localhost:8800/backend", // frontend URI (ReactJS)
+}
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
@@ -55,7 +59,7 @@ app.use((err,req,res,next)=>{
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../frontend/public/upload')
+    cb(null, '../upload')
   },
   filename: (req, file, cb) => {
     cb(null, Date.now()+file.originalname.replace(/\s+/g, '-').toLowerCase());
