@@ -71,7 +71,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname+"/public")));
 
-
-app.listen("8800", ()=>{
+const port=process.env.PORT || 8800
+app.listen(port, ()=>{
     connectdb();
     console.log("Connected to backend!")});
