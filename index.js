@@ -59,7 +59,7 @@ app.use((err,req,res,next)=>{
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'https://hexa-backend.onrender.com/upload')
+    cb(null, './uploads')
   },
   filename: (req, file, cb) => {
     cb(null, Date.now()+file.originalname.replace(/\s+/g, '-').toLowerCase());
