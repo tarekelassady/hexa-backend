@@ -59,7 +59,7 @@ app.use((err,req,res,next)=>{
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './uploads')
+    cb(null, '/upload')
   },
   filename: (req, file, cb) => {
     cb(null, Date.now()+file.originalname.replace(/\s+/g, '-').toLowerCase());
